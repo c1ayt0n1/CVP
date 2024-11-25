@@ -1,0 +1,94 @@
+# Automatic License Plate Recognition (ALPR) with Image and Video Processing
+
+This project processes images and videos to detect and recognize license plates using the OpenALPR API. Detected plates are annotated on the image or video frames and saved for review.
+
+---
+
+## Features
+1. Process a single image for license plate detection.
+2. Process video files to extract and analyze license plates from frames.
+3. Automatically annotate and save the processed images or video frames with detected license plate information.
+4. Interactive menu to choose images or videos for processing.
+
+---
+
+## Installation
+
+### Prerequisites
+1. Install [Python](https://www.python.org/) (version 3.7 or higher recommended).
+2. Obtain an API key from [OpenALPR](https://www.openalpr.com/).
+
+### Steps
+1. Clone or download this repository.
+2. Navigate to the project folder and install the required dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+
+3. Create a .env file in the project directory and add your API key:
+
+"API_KEY=your_openalpr_api_key"
+
+Usage:
+1.Place images in the img folder.
+2.Place videos in the vid folder.
+
+Running the Script:
+Run the script using the following command: python main.py
+
+Menu Options
+-Option 1: Process a single image.
+    -Select an image from the list.
+    -View detected plates and their details.
+    -Annotated images are saved in the results folder.
+
+-Option 2: Process a video.
+    -Select a video from the list.
+    -Extract frames at intervals for processing.
+    -Annotated frames are saved in the results folder.
+
+Functions:
+-send_image_to_api(image_path)
+    -Description: Sends an image to the OpenALPR API for   processing.
+    -Input: image_path (path to the image file).
+    -Output: JSON response from the API or error message.
+
+-parse_ocr_data(ocr_data)
+    -Description: Extracts license plate information from the API response.
+    -Input: ocr_data (JSON response).
+    -Output: List of detected plates with details.
+
+-draw_box_and_save(image_path, plate_data, frame_name=None)
+    -Description: Annotates the image with license plate details and saves it.
+    -Inputs:
+        -image_path: Path to the input image.
+        -plate_data: Plate details (coordinates, plate number, etc.).
+        -frame_name: Optional, for naming frames from videos.
+    -Output: Annotated image saved in the results folder.
+
+-process_video(video_path)
+    -Description: Processes a video file to detect license plates in frames.
+    -Input: video_path (path to the video file).
+    -Output: List of detected plates with frame numbers.
+
+-main()
+    -Description: Interactive menu to process images or videos.
+    -Output: Annotated images or video frames saved in the results folder.
+
+Folder Structure:
+
+project-folder/
+├── img/                  # Folder for input images
+├── vid/                  # Folder for input videos
+├── results/              # Folder for annotated images and frames
+├── main.py               # Main script
+├── requirements.txt      # Dependencies list
+└── .env                  # Environment file for API key
+
+
+Notes:
+-The script uses OpenALPR API; ensure your API key is valid.
+-Tested with Python 3.9 on Windows.
+
+License:
+-This project is licensed under the MIT License. See the LICENSE file for details.
